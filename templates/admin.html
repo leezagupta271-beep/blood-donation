@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard | Blood Donation{% endblock %}
+
+{% block main_class %}admin-layout-wrapper{% endblock %}
+
+{% block content %}
+<style>
+    /* Override navbar slightly for Admin if needed, or remove completely to keep standard */
+    .nav-links a:hover, .nav-links a.active { color: var(--primary-color); }
+</style>
+
+<div class="dashboard-layout">
+    <aside class="sidebar">
+        <ul class="sidebar-menu">
+            <li><a href="{{ url_for('admin_page') }}" class="active"><i data-feather="bar-chart-2"></i> System Overview</a></li>
+            <li><a href="#"><i data-feather="users"></i> Manage Donors</a></li>
+            <li><a href="#"><i data-feather="map-pin"></i> Manage Camps</a></li>
+            <li><a href="#"><i data-feather="package"></i> Blood Inventory</a></li>
+        </ul>
+    </aside>
+
+    <main class="dashboard-content">
+        <div class="dashboard-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem;">
+            <div>
+                <h2 style="font-size: 2.25rem;">Admin Control Center</h2>
+                <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: 0.25rem;">Global system metrics and active hospital requests.</p>
+            </div>
+            <button class="btn primary-btn"><i data-feather="download"></i> Export Data</button>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="icon-wrapper"><i data-feather="users"></i></div>
+                <div>
+                    <h3 id="totalDonorsCount">-</h3>
+                    <p>Total Donors</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="icon-wrapper" style="color: var(--success); background: rgba(42, 157, 143, 0.1);"><i data-feather="map"></i></div>
+                <div>
+                    <h3 id="activeCampsCount" style="color: var(--success);">-</h3>
+                    <p>Active Camps</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="icon-wrapper" style="color: var(--accent-color); background: rgba(69, 123, 157, 0.1);"><i data-feather="package"></i></div>
+                <div>
+                    <h3 id="inventoryCount" style="color: var(--accent-color);">-</h3>
+                    <p>Blood Bank Units</p>
+                </div>
+            </div>
+            <div class="stat-card" style="border-left: 4px solid var(--urgent);">
+                <div class="icon-wrapper" style="color: var(--urgent); background: var(--primary-light);"><i data-feather="alert-triangle"></i></div>
+                <div>
+                    <h3 id="urgentReqCount" style="color: var(--urgent);">-</h3>
+                    <p>Pending Requests</p>
+                </div>
+            </div>
+            <div class="stat-card" style="border-left: 4px solid var(--warning);">
+                <div class="icon-wrapper" style="color: #D97706; background: rgba(244, 162, 97, 0.1);"><i data-feather="activity"></i></div>
+                <div>
+                    <h3 id="mostDemandedGroup" style="color: #D97706; font-size: 1.5rem;">-</h3>
+                    <p>Most Demanded (Units)</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel">
+            <div class="panel-header">
+                <h3 style="margin: 0; font-size: 1.25rem;">System Health & Alerts</h3>
+            </div>
+            <div style="text-align: center; padding: 2rem 0; color: var(--text-muted);">
+                <i data-feather="check-circle" style="width: 48px; height: 48px; color: var(--success); margin-bottom: 1rem;"></i>
+                <p>All services are running normally. No warnings detected across the hospital network.</p>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        fetchDashboardStats();
+    });
+</script>
+{% endblock %}

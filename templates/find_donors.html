@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Find Blood Donors | Local Lifesavers{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Find Blood Donors</h1>
+    <p>Search for willing blood donors in your city or location. Connect directly to save lives.</p>
+    <div class="filter-bar">
+        <input type="text" id="donorLocationSearch" placeholder="Enter location (e.g., New York)...">
+        <button id="searchDonorsBtn" class="btn primary-btn" style="white-space: nowrap;"><i data-feather="search"></i> Search Donors</button>
+    </div>
+</div>
+
+<section class="items-list container">
+    <div id="loadingIndicator" style="display: none; text-align: center; margin: 2rem 0;">
+        <div class="spinner"></div>
+        <p style="color: var(--text-muted);">Scanning donor network...</p>
+    </div>
+    <div class="grid items-grid" id="donorsGrid">
+        <!-- Dynamic Donor Cards Injected via JS -->
+    </div>
+    <div id="noDonorsMsg" style="display: none; text-align: center; color: var(--text-muted); margin: 4rem 0;">
+        <i data-feather="users" style="width: 48px; height: 48px; color: var(--border-color); margin-bottom: 1rem;"></i>
+        <h3>No donors found in this location.</h3>
+        <p>Try searching for a nearby major city.</p>
+    </div>
+</section>
+{% endblock %}

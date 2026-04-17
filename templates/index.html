@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Blood Donate | Save Lives Today{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <h1>Give the Gift of <span>Life</span></h1>
+        <p>A single drop of your blood can give someone another chance at life. Join our modern, global network of lifesavers today.</p>
+        <div class="hero-buttons">
+            <a href="/availability" class="btn primary-btn"><i data-feather="search"></i> Find Blood</a>
+            <a href="/needs" class="btn secondary-btn" style="background: white;"><i data-feather="activity"></i> Urgent Needs</a>
+            {% if not user %}
+            <a href="{{ url_for('register_page') }}" class="btn secondary-btn"><i data-feather="user-plus"></i> Become a Donor</a>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<section class="features container text-center">
+    <h2 style="margin-bottom: 1rem; font-size: 2.25rem;">Why Join Our Network?</h2>
+    <p style="margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">Our platform is dedicated to streamlining blood donation, connecting hospitals with the right donors in record time.</p>
+    <div class="grid features-grid">
+        <div class="feature-card">
+            <div class="icon-wrapper">
+                <i data-feather="heart" style="width: 32px; height: 32px;"></i>
+            </div>
+            <h3>Save Lives Immediately</h3>
+            <p>Every donation you make can save up to three lives. Your contribution has a direct, profound impact on your community.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon-wrapper">
+                <i data-feather="zap" style="width: 32px; height: 32px;"></i>
+            </div>
+            <h3>Real-Time Requests</h3>
+            <p>We connect urgent hospital requirements directly to eligible local donors, dropping wait times to near zero.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon-wrapper">
+                <i data-feather="shield" style="width: 32px; height: 32px;"></i>
+            </div>
+            <h3>Secure & Private</h3>
+            <p>Your data is protected with enterprise-grade security. We ensure donor anonymity and medical privacy at all times.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

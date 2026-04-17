@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Urgent Blood Needs | Blood Donation{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Urgent Blood Demands</h1>
+    <p>Hospitals requesting urgent blood. Connect with local patients and save lives right now.</p>
+</div>
+
+<section class="items-list container">
+    <div id="loadingIndicatorReq" style="display: none; text-align: center; margin: 2rem 0;">
+        <div class="spinner"></div>
+        <p style="color: var(--text-muted);">Loading active requests...</p>
+    </div>
+    <div class="grid items-grid" id="needsGrid">
+        <!-- Dynamic Cards Injected via JS -->
+    </div>
+    <div id="noReqMsg" style="display: none; text-align: center; color: var(--text-muted); margin: 4rem 0;">
+        <i data-feather="check-circle" style="width: 64px; height: 64px; color: var(--success); margin-bottom: 1rem;"></i>
+        <h3 style="color: var(--text-main); margin-bottom: 0.5rem;">No active blood needs right now.</h3>
+        <p>Our network hospitals are currently well-stocked. Thank you, lifesavers!</p>
+    </div>
+</section>
+{% endblock %}

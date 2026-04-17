@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Donor Dashboard | Blood Donation{% endblock %}
+
+{% block content %}
+<div class="dashboard-layout">
+    <aside class="sidebar">
+        <ul class="sidebar-menu">
+            <li><a href="{{ url_for('dashboard_page') }}" class="active"><i data-feather="grid"></i> Overview</a></li>
+            <li><a href="{{ url_for('camps_page') }}"><i data-feather="map"></i> Find Camps</a></li>
+            <li><a href="/availability"><i data-feather="search"></i> Search Inventory</a></li>
+        </ul>
+    </aside>
+
+    <main class="dashboard-content">
+        <div class="dashboard-header">
+            <h2 style="font-size: 2.25rem;">Welcome back, {{ user.name }} <span id="userGroupSpan" class="badge badge-success" style="margin-left: 0.5rem; vertical-align: middle;"></span></h2>
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: 0.25rem;">Here's your lifesaver impact so far.</p>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="icon-wrapper"><i data-feather="droplet"></i></div>
+                <div>
+                    <h3 id="donationsCount">-</h3>
+                    <p>Total Donations</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="icon-wrapper" style="color: var(--success); background: rgba(42, 157, 143, 0.1);"><i data-feather="heart"></i></div>
+                <div>
+                    <h3 id="livesSavedCount" style="color: var(--success);">-</h3>
+                    <p>Lives Saved (Est.)</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="icon-wrapper" style="color: var(--warning); background: rgba(244, 162, 97, 0.1);"><i data-feather="calendar"></i></div>
+                <div>
+                    <h3 id="nextEligibleDate" style="font-size: 1.25rem;">-</h3>
+                    <p>Next Eligible Date</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-header">
+                <h3 style="margin: 0; font-size: 1.25rem;">Recent Activity</h3>
+            </div>
+            <div style="text-align: center; padding: 3rem 0; color: var(--text-muted);">
+                <i data-feather="activity" style="width: 48px; height: 48px; margin-bottom: 1rem; opacity: 0.4;"></i>
+                <p>Register for upcoming local donation events from the "Find Camps" menu.</p>
+                <a href="{{ url_for('camps_page') }}" class="btn primary-btn" style="margin-top: 1.5rem;">Explore Camps</a>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}

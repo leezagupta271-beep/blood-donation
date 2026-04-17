@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Donation Camps | Blood Donation{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Upcoming Donation Camps</h1>
+    <p>Find a camp near you, schedule your donation, and participate in our community events.</p>
+    <div class="filter-bar" style="display: none;">
+        <input type="text" id="campSearch" placeholder="Search by location or camp name...">
+        <select id="bloodGroupFilter"><option value="all">All Needs</option></select>
+    </div>
+</div>
+
+<section class="items-list container">
+    <div class="grid items-grid camps-grid">
+        <!-- Injected by script.js -->
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}Register | Blood Donate App{% endblock %}
+
+{% block content %}
+<section class="form-section">
+    <div class="form-container" style="max-width: 600px;">
+        <h2>Donor Registration</h2>
+        <p class="form-subtitle">Join the community of lifesavers today</p>
+        <form id="registerForm">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label for="fullName">Full Name</label>
+                    <div class="input-with-icon">
+                        <i data-feather="user"></i>
+                        <input type="text" id="fullName" required placeholder="John Doe">
+                    </div>
+                </div>
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label for="phone">Phone Number</label>
+                    <div class="input-with-icon">
+                        <i data-feather="phone"></i>
+                        <input type="tel" id="phone" required placeholder="123-456-7890">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <div class="input-with-icon">
+                    <i data-feather="mail"></i>
+                    <input type="email" id="email" required placeholder="john@example.com">
+                </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label for="bloodGroup">Blood Group</label>
+                    <div class="input-with-icon">
+                        <i data-feather="droplet"></i>
+                        <select id="bloodGroup" required>
+                            <option value="">Select Group</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label for="location">Location / City</label>
+                    <div class="input-with-icon">
+                        <i data-feather="map-pin"></i>
+                        <input type="text" id="location" required placeholder="e.g. New York">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Create Password</label>
+                <div class="input-with-icon">
+                    <i data-feather="lock"></i>
+                    <input type="password" id="password" required placeholder="••••••••">
+                </div>
+            </div>
+            <button type="submit" class="btn primary-btn btn-full" style="margin-top: 1rem;">Create Account</button>
+            <div class="form-switch">
+                Already have an account? <a href="{{ url_for('login_page') }}">Login here</a>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

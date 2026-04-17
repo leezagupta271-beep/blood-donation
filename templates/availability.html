@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Blood Availability | Live Inventories{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Live Blood Availability</h1>
+    <p>Real-time inventory of blood stocks across our partner hospitals. Filter by group and respond instantly.</p>
+    <div class="filter-bar">
+        <select id="bloodGroupStockFilter">
+            <option value="all">View All Blood Groups</option>
+            <option value="A+">A Positive (A+)</option>
+            <option value="A-">A Negative (A-)</option>
+            <option value="B+">B Positive (B+)</option>
+            <option value="B-">B Negative (B-)</option>
+            <option value="O+">O Positive (O+)</option>
+            <option value="O-">O Negative (O-)</option>
+            <option value="AB+">AB Positive (AB+)</option>
+            <option value="AB-">AB Negative (AB-)</option>
+        </select>
+    </div>
+</div>
+
+<section class="items-list container">
+    <div id="loadingIndicator" style="display: none; text-align: center; margin: 2rem 0;">
+        <div class="spinner"></div>
+        <p style="color: var(--text-muted);">Fetching real-time inventory...</p>
+    </div>
+    <div class="grid items-grid" id="availabilityGrid">
+        <!-- Dynamic Availability Cards Injected via JS -->
+    </div>
+    <div id="noStockMsg" style="display: none; text-align: center; color: var(--text-muted); margin: 4rem 0;">
+        <i data-feather="package" style="width: 48px; height: 48px; color: var(--border-color); margin-bottom: 1rem;"></i>
+        <h3>No stock available for this group immediately.</h3>
+        <p>Try looking for compatible blood types or check back soon.</p>
+    </div>
+</section>
+
+<!-- Contact Modal -->
+<div id="contactModal" class="modal">
+    <div class="modal-content">
+        <i data-feather="x" class="close-modal" aria-label="Close"></i>
+        <h2 id="modalHospitalName" style="color: var(--secondary-color); margin-bottom: 1.5rem; font-size: 1.5rem;">Hospital Name</h2>
+        <div class="modal-body" style="display: flex; flex-direction: column; gap: 1rem;">
+            <p style="display: flex; align-items: center; gap: 0.5rem;"><i data-feather="map-pin" style="color: var(--text-muted);"></i> <strong id="modalLocation">Location</strong></p>
+            <p style="display: flex; align-items: center; gap: 0.5rem;"><i data-feather="phone" style="color: var(--text-muted);"></i> <strong id="modalPhone">Phone</strong></p>
+            <p style="display: flex; align-items: center; gap: 0.5rem;"><i data-feather="mail" style="color: var(--text-muted);"></i> <strong id="modalEmail">hospital@bloodbank.org</strong></p>
+        </div>
+        <button class="btn primary-btn btn-full close-modal-btn" style="margin-top: 2rem;">Close Window</button>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.querySelector('.close-modal-btn')?.addEventListener('click', () => {
+        const modal = document.getElementById('contactModal');
+        if (modal) {
+            modal.classList.remove('show');
+            setTimeout(() => modal.style.display = 'none', 300);
+        }
+    });
+</script>
+{% endblock %}

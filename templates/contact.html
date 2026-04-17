@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Contact & About | Blood Donation{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>About Our Platform</h1>
+    <p>We are a modern health-tech initiative bridging the gap between donors, blood banks, and hospitals to eliminate blood scarcity.</p>
+</div>
+
+<section class="form-section" style="min-height: auto; padding: 4rem 2rem; background-color: var(--bg-surface);">
+    <div class="form-container" style="max-width: 600px;">
+        <h2>Get in Touch</h2>
+        <p class="form-subtitle">Have a question or want to partner with us? Drop us a message.</p>
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="contactName">Full Name</label>
+                <div class="input-with-icon">
+                    <i data-feather="user"></i>
+                    <input type="text" id="contactName" required placeholder="Your Name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="contactEmail">Email Address</label>
+                <div class="input-with-icon">
+                    <i data-feather="mail"></i>
+                    <input type="email" id="contactEmail" required placeholder="Your Email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="message">Your Message</label>
+                <textarea id="message" rows="5" required placeholder="How can we assist you?"></textarea>
+            </div>
+            <button type="submit" class="btn primary-btn btn-full"><i data-feather="send"></i> Send Message</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

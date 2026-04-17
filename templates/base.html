@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Blood Donation{% endblock %}</title>
+    
+    <!-- Modern Web Font (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Feather Icons for modern minimalist icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="{{ url_for('home') }}">
+                    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="BloodBridge Logo" class="brand-logo">
+                </a>
+            </div>
+            <nav class="nav-links">
+                <ul id="menu">
+                    <li><a href="{{ url_for('home') }}" class="{% if request.endpoint == 'home' %}active{% endif %}">Home</a></li>
+                    <li><a href="/availability" class="{% if request.endpoint == 'availability_page' %}active{% endif %}">Availability</a></li>
+                    <li><a href="/needs" class="{% if request.endpoint == 'needs_page' %}active{% endif %}">Needs</a></li>
+                    <li><a href="{{ url_for('camps_page') }}" class="{% if request.endpoint == 'camps_page' %}active{% endif %}">Camps</a></li>
+                    {% if session.get('user_id') %}
+                        <li><a href="{{ url_for('dashboard_page') }}" class="{% if request.endpoint == 'dashboard_page' %}active{% endif %}">Dashboard</a></li>
+                        <li><a href="#" id="logoutBtn" class="logout-link">Logout</a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('register_page') }}" class="{% if request.endpoint == 'register_page' %}active{% endif %}">Register</a></li>
+                        <li><a href="{{ url_for('login_page') }}" class="btn-nav login-btn {% if request.endpoint == 'login_page' %}active{% endif %}">Login</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+            <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content {% block main_class %}{% endblock %}">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <div class="logo">
+                    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="BloodBridge Logo" class="brand-logo footer-logo">
+                </div>
+                <p class="footer-tagline">Empowering communities, saving lives. Join the lifesavers network today.</p>
+            </div>
+            <div class="footer-links-group">
+                <h4>Platform</h4>
+                <a href="{{ url_for('home') }}">Home</a>
+                <a href="/availability">Blood Availability</a>
+                <a href="/needs">Urgent Needs</a>
+                <a href="{{ url_for('camps_page') }}">Donation Camps</a>
+            </div>
+            <div class="footer-links-group">
+                <h4>Support</h4>
+                <a href="{{ url_for('contact_page') }}">Contact Us</a>
+                <a href="#">Help Center</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 BloodDonate App. World-class health-tech platform.</p>
+        </div>
+    </footer>
+
+    <!-- Initialize Icons -->
+    <script>
+      feather.replace()
+    </script>
+    
+    <!-- Main Script -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>
